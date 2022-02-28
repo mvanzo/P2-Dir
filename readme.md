@@ -3,11 +3,11 @@
 
 ## API Proof of Concept
 
-![API proof of concept](./imgs/API-Proof-Concept.png)
+![API proof of concept](./API-Proof-Concept.png)
 
 ## ERD
 
-![an ERD of my project](./imgs/ERD.drawio.png)
+![an ERD of my project](./ERD.drawio.png)
 
 ## RESTful Routing
 | Path           | HTTP Verb | Purpose                                                                                                |
