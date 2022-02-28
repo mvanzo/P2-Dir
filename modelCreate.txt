@@ -1,0 +1,4 @@
+sequelize model:create --name area --attributes name:string,latitude:float,longitude:float
+
+generate seed file:
+sequelize seed:generate --name seed-area

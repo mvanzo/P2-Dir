@@ -35,11 +35,11 @@ app.use(async (req, res, next)=>{
 
 // CONTROLLER middleware
 app.use('/users', require('./controllers/users.js'))
+app.use('/areas', require('./controllers/areas.js'))
 
 app.get('/', (req, res)=>{
     res.render('home.ejs')
 })
-
 
 app.listen(PORT, () => {
     console.log('...listening on', PORT );
