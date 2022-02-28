@@ -1,4 +1,4 @@
-# daySpark
+# Touring Reports
 * Description: Social platform for backcountry skiing in popular locations in Washington state. Users can log in to read and create trip reports as well as check the weather for the area with specific data backcountry skiers can utilize.
 
 ## API Proof of Concept
