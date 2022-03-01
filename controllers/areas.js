@@ -14,12 +14,9 @@ router.get('/:id', async (req, res)=> {
         const backcountryLocation = await db.area.findOne({
             where: {id: req.params.id}
         })
-
         res.render('./areas/index.ejs', {
-            location: backcountryLocation.name,
-            
+            location: backcountryLocation.name,     
         })
-
     } catch (err) {
         console.log('error finding the right ski area', err)
     }
@@ -31,19 +28,23 @@ router.get('/:id/weather', async (req, res)=>{
             where: {id: req.params.id}
         })
 
-        let findWeather = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${backcountryLocation.latitude}%2C${backcountryLocation.longitude}?unitGroup=us&key=R7SPHSWWT6TMBQ7SYQYPFD985&contentType=json`)
+        let findWeather = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${backcountryLocation.latitude}%2C${backcountryLocation.longitude}?unitGroup=us&key=${process.env.WEATHER_API_KEY}&contentType=json`)
                 
-        res.json(findWeather.data.days[0])
+        // res.json(findWeather.data)
     
         res.render('./areas/weather.ejs', {
+            location: backcountryLocation.name,
+            
             // CURRENT CONDITIONS
             currentConditions: findWeather.data.currentConditions.conditions,
             currentTemp: findWeather.data.currentConditions.temp,
+            currentFeelsLike: findWeather.data.currentConditions.feelslike,
             currentWindSpeed: findWeather.data.currentConditions.windspeed,
             currentWindDir: findWeather.data.currentConditions.winddir,
+            currentVisibility: findWeather.data.currentConditions.visbility,
             currentCloudCover: findWeather.data.currentConditions.cloudcover,
             currentSolarRadiation: findWeather.data.currentConditions.solarradiation,
-            currentCloudCover: findWeather.data.currentConditions.solarenergy,
+            currentSolarEnergy: findWeather.data.currentConditions.solarenergy,
             currentUvIndex: findWeather.data.currentConditions.uvindex,
 
             // TODAY

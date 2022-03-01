@@ -39,14 +39,13 @@ app.use('/areas', require('./controllers/areas.js'))
 // app.use('/reports', require('./controllers/reports.js'))     // **** should this be /areas/:id/reports???
 
 app.get('/', async (req, res)=>{
+    // pull all from areas table to be rendered on home page
     try {
         const allAreas = await db.area.findAll()
         res.render('home.ejs', { allAreas })
     } catch (err) {
         console.log('there was a stinking error', err)
     }
-
-
 })
 
 app.listen(PORT, () => {

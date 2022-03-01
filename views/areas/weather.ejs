@@ -1,5 +1,63 @@
-<h1>Weather Page</h1>
+<h1>Weather Page for <%= location %> </h1>
 
 <!-- insert a table with weather data -->
 
-<%= currentTemp %> 
+<h1>Current</h1>
+<ul>
+    <li>
+        Conditions: <%= currentConditions %> 
+    </li>
+    <li>
+        Temp: <%= currentTemp %> 
+    </li>
+    <li>
+        Feels Like: <%= currentFeelsLike %> 
+    </li>
+    <li>
+        Wind Speed: <%= currentWindSpeed %> 
+    </li>
+    <li>
+        Wind Direction: <%= currentWindDir %> 
+    </li>
+    <li>  
+        Visibility: <%= currentVisibility %> 
+    </li>
+    <li>  
+        Cloud Cover: <%= currentCloudCover %> 
+    </li>
+    <li>  
+        Solar Radiation: <%= currentSolarRadiation %> <!--remove?-->
+    </li>
+    <li>  
+        Solar Energy: <%= currentSolarEnergy %> <!--remove?-->
+    </li>
+    <li>  
+        UV Index: <%= currentUvIndex %>
+    </li>
+</ul>
+
+<h1>Today's Forecast</h1>
+<ul>
+    <li>
+        Description: <%= todayDescription %> 
+    </li>
+    <li>
+        Precipitation Potential: <%= todayPrecipProb %> 
+    </li>
+    <li>
+        Precip Type: <%= currentPrecipType %> 
+    </li>
+    <li>
+        High: <%= todayTempMax %> 
+    </li>
+    <li>
+        Low: <%= todayTempMin %> 
+    </li>
+</ul>
+
+<h1>Snowpack</h1>
+<ul>
+    <li>
+        Snow Depth: <%= snowDepth %> 
+    </li>
+</ul>
