@@ -4,6 +4,9 @@
 </div>
 
 <% allAreas.forEach(area => { %>
-    <li> <a href="/areas/<%= area.id %>"> <%= area.name %> </a>
+    <li>
+        <%= area.name %> <br>
+        <a href="/areas/<%= area.id %>">Trip Reports</a> <br>
+        <a href="/areas/<%= area.id %>/weather">Weather</a>
     </li>
 <% }) %>
