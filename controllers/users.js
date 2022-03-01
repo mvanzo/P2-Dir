@@ -5,17 +5,23 @@ const bcrypt = require('bcrypt')        // need to require bcrypt in order to us
 const cryptojs = require('crypto-js')       // require crypto-js for cookie encrpytion?
 require('dotenv').config()
 
+// READ profile page
 router.get('/profile', (req, res)=>{
     res.render('users/profile.ejs')
 })
 
+// READ nwew user page
 router.get('/new', (req, res)=>{
     res.render('users/new.ejs');
 })
 
+// CREATE new user
 router.post('/', async (req, res)=>{
     const [newUser, created] = await db.user.findOrCreate({
-        where: {email: req.body.email},
+        where: {
+            email: req.body.email,
+            username: req.body.username
+        },
         // defaults: {password: req.body.password}----did not use this for security purposes
     })
     if(!created){
@@ -39,6 +45,7 @@ router.post('/', async (req, res)=>{
     }
 })
 
+// READ log in page
 router.get('/login', (req, res)=>{
     res.render('users/login.ejs', {error: null})
 })
