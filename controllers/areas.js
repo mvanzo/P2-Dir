@@ -34,7 +34,7 @@ router.get('/:id/weather', async (req, res)=>{
     
         res.render('./areas/weather.ejs', {
             location: backcountryLocation.name,
-            
+
             // CURRENT CONDITIONS
             currentConditions: findWeather.data.currentConditions.conditions,
             currentTemp: findWeather.data.currentConditions.temp,

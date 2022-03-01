@@ -2,3 +2,5 @@ sequelize model:create --name area --attributes name:string,latitude:float,longi
 
 generate seed file:
 sequelize seed:generate --name seed-area
+
+sequelize model:create --name report --attributes report:text,userId:integer,areaId:integer
