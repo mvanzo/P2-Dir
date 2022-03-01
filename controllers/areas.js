@@ -8,8 +8,17 @@ router.get('/', (req, res)=> {
     res.render('./areas/index.ejs')
 })
 
-router.get('/crystal', (req, res)=> {
-    res.render('./areas/crystal.ejs')
+router.get('/:id', async (req, res)=> {
+    try {
+        const backcountryLocation = await db.area.findOne({
+            where: {id: req.params.id}
+        })
+
+        res.render('./areas/index.ejs', {backcountryLocation})
+    } catch (err) {
+        console.log('error finding the right ski area', err)
+    }
+
 })
 
 module.exports = router

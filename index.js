@@ -36,9 +36,17 @@ app.use(async (req, res, next)=>{
 // CONTROLLER middleware
 app.use('/users', require('./controllers/users.js'))
 app.use('/areas', require('./controllers/areas.js'))
+// app.use('/reports', require('./controllers/reports.js'))     // **** should this be /areas/:id/reports???
 
-app.get('/', (req, res)=>{
-    res.render('home.ejs')
+app.get('/', async (req, res)=>{
+    try {
+        const allAreas = await db.area.findAll()
+        res.render('home.ejs', { allAreas })
+    } catch (err) {
+        console.log('there was a stinking error', err)
+    }
+
+
 })
 
 app.listen(PORT, () => {

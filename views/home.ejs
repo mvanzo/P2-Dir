@@ -3,9 +3,7 @@
     <p>Choose an area from the list of winter backcountry touring hotspots in Washington below to read trip reports and find weather for the area. Create an account to get involved and log your own trip reports!</p>
 </div>
 
-<ul>
-    <li>Crystal</li>
-    <li>Snoqualmie Pass</li>
-    <li>Stevens Pass</li>
-    <li>Baker</li>
-</ul>
+<% allAreas.forEach(area => { %>
+    <li> <a href="/areas/<%= area.id %>"> <%= area.name %> </a>
+    </li>
+<% }) %>
