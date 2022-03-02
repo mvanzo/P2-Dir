@@ -36,7 +36,7 @@ app.use(async (req, res, next)=>{
 // CONTROLLER middleware
 app.use('/users', require('./controllers/users.js'))
 app.use('/areas', require('./controllers/areas.js'))
-// app.use('/reports', require('./controllers/reports.js'))     // **** should this be /areas/:id/reports???
+app.use('/reports', require('./controllers/reports.js'))
 
 app.get('/', async (req, res)=>{
     // pull all from areas table to be rendered on home page

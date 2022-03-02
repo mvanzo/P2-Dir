@@ -10,7 +10,7 @@ router.get('/profile', (req, res)=>{
     res.render('users/profile.ejs')
 })
 
-// READ nwew user page
+// READ new user page
 router.get('/new', (req, res)=>{
     res.render('users/new.ejs');
 })
@@ -50,6 +50,7 @@ router.get('/login', (req, res)=>{
     res.render('users/login.ejs', {error: null})
 })
 
+// log in
 router.post('/login', async (req, res)=>{
     const user = await db.user.findOne({
         where: { email: req.body.email } 

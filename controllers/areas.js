@@ -1,5 +1,4 @@
 const express = require('express')
-const { route } = require('express/lib/application')
 const router = express.Router()
 const db = require('../models')     // link to database
 const axios = require('axios')
@@ -15,7 +14,8 @@ router.get('/:id', async (req, res)=> {
             where: {id: req.params.id}
         })
         res.render('./areas/index.ejs', {
-            location: backcountryLocation.name,     
+            location: backcountryLocation.name,
+            id: backcountryLocation.id     
         })
     } catch (err) {
         console.log('error finding the right ski area', err)

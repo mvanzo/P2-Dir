@@ -1,10 +1,26 @@
-<h1><%= location %></h1>
+<h1>The id of <%= location %> is <%= id %></h1>
 
 <!-- TRIP REPORTS -->
 <!-- CREATE -->
+<h3>Write a trip report</h3>
+<form action="/reports" method="POST">
+    <label for="report">Report:</label>
+    <input type="text" name="report" id="report" required>
+    
+    <!-- add label/input for date -->
 
+    <input type="hidden" name="userId" value="<%= user.id %> ">
+    <input type="hidden" name="areaId" value="<%= id %> ">
+    
+    <!-- copied button class from express-proj-organizer -->
+    <input type="submit" class="btn btn-primary">       
+
+</form>
 
 <!-- READ -->
+
+<h3>Read all trip reports</h3>
+
 
 <!--UPDATE -->
 
