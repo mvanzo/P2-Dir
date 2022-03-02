@@ -13,21 +13,29 @@
 </ul>
 <% }) %> 
 
-<!-- CREATE -->
-<h3>Write a trip report</h3>
-<form action="/reports" method="POST">
-    <label for="report">Report:</label>
-    <input type="text" name="report" id="report" required>
+<% if (!user) { %>
+    <h3>Must be <a href="/users/login">signed in</a> to write a trip report. Create a new account <a href="/users/new">here</a></h3>
+    <% } %>
     
-    <!-- add label/input for date -->
+<% if (user) { %>
+    <!-- CREATE -->
+    <h3>Write a trip report</h3>
 
-    <input type="hidden" name="userId" value="<%= user.id %> ">
-    <input type="hidden" name="areaId" value="<%= id %> ">
+    <form action="/reports" method="POST">
+        <label for="report">Report:</label>
+        <input type="text" name="report" id="report" required>
+        
+        <!-- add label/input for date -->
     
-    <!-- copied button class from express-proj-organizer -->
-    <input type="submit" class="btn btn-primary">       
-
-</form>
+        <input type="hidden" name="userId" value="<%= user.id %> ">
+        <input type="hidden" name="areaId" value="<%= id %> ">
+        
+        <!-- copied button class from express-proj-organizer -->
+        <input type="submit" class="btn btn-primary">       
+    
+    </form>
+ 
+<% } %>
 
 
 <!--UPDATE -->
