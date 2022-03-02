@@ -11,11 +11,13 @@ router.get('/', (req, res)=> {
 router.get('/:id', async (req, res)=> {
     try {
         const backcountryLocation = await db.area.findOne({
-            where: {id: req.params.id}
+            where: {id: req.params.id},
+            include: [db.report]
         })
         res.render('./areas/index.ejs', {
             location: backcountryLocation.name,
-            id: backcountryLocation.id     
+            id: backcountryLocation.id,
+            reports: backcountryLocation.reports
         })
     } catch (err) {
         console.log('error finding the right ski area', err)

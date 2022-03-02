@@ -1,6 +1,18 @@
 <h1>The id of <%= location %> is <%= id %></h1>
 
 <!-- TRIP REPORTS -->
+
+<!-- READ -->
+<h3>Read all trip reports</h3>
+
+<% reports.forEach(el => { %>
+<ul>
+    <li>
+        <%= el.report %>
+    </li>
+</ul>
+<% }) %> 
+
 <!-- CREATE -->
 <h3>Write a trip report</h3>
 <form action="/reports" method="POST">
@@ -16,10 +28,6 @@
     <input type="submit" class="btn btn-primary">       
 
 </form>
-
-<!-- READ -->
-
-<h3>Read all trip reports</h3>
 
 
 <!--UPDATE -->
