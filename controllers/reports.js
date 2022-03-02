@@ -51,18 +51,24 @@ router.put('/:id', async (req, res)=> {
             report: req.body.report
         })
         await foundReport.save();
-        res.redirect(`/areas/${req.params.id}`)
+        res.redirect(`/areas/${req.params.id}`);
     }
     catch (err) {
         console.log('error editing the trip report', err);
     }
 })
 
+// DELETE TR
 router.delete('/:id', async (req, res)=> {
     try {
-
+        // console.log(`this is the id of the report ${req.params.id}`)
+        const foundReport = await db.report.findOne({
+            where: {id: req.params.id}
+        })
+        await foundReport.destroy();
+        res.redirect(`/areas/${foundReport.areaId}`);
     } catch (err) {
-        console.log('error deleting the TR', err)
+        console.log('error deleting the TR', err);
     }
 })
 
