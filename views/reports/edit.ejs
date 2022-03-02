@@ -1,0 +1,21 @@
+
+<% foundReports.forEach(report=> { %>
+    
+    <form action="/reports/<%= report.id %>/?_method=PUT" method="POST">
+        
+        <label for="report">Trip Report: </label>
+        
+        <input
+            type="text"
+            class="report-box" 
+            id="report"
+            name="report"
+            value="<%= report.report %>"
+            required
+        />
+
+        <input type="submit" value="Submit Changes">
+
+    </form>
+
+<% }) %> 

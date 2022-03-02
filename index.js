@@ -3,6 +3,7 @@ const ejsLayouts = require('express-ejs-layouts')       // import ejs layouts
 const cookieParser = require('cookie-parser')
 const cryptoJS = require('crypto-js')
 const db = require('./models/index.js')
+const methodOverride = require("method-override")       // allows for use of put and delete
 
 require('dotenv').config()                              // allows us to access .env variables
 
@@ -14,6 +15,7 @@ app.set('view engine', 'ejs')                           // set the view engine t
 app.use(ejsLayouts)                                     // tells express we want to use layouts
 app.use(cookieParser())                                 // gives us access to req.cookies
 app.use(express.urlencoded({ extended: false }))        // body parser to make req.body work
+app.use(methodOverride("_method"))
 
 // CUSTOM LOGIN MIDDLEWARE
 app.use(async (req, res, next)=>{

@@ -12,7 +12,12 @@ router.get('/:id', async (req, res)=> {
     try {
         const backcountryLocation = await db.area.findOne({
             where: {id: req.params.id},
-            include: [db.report]
+            include: {
+                model: db.report,
+                include: {
+                    model: db.user
+                }
+            },
         })
         res.render('./areas/index.ejs', {
             location: backcountryLocation.name,

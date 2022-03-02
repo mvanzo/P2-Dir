@@ -3,19 +3,32 @@
 <!-- TRIP REPORTS -->
 
 <!-- READ -->
-<h3>Read all trip reports</h3>
+<h3>Trip Reports:</h3>
 
 <% reports.forEach(el => { %>
 <ul>
     <li>
+        <%= el.user.username %>: 
         <%= el.report %>
+
+        <!-- edit TR link - user must be logged in and it must be their comment -->
+        <% if (user && user.id === el.user.id) { %>
+        <a href="/reports/edit/<%= el.id%>" > Edit </a>
+
+        <!-- DELETE TR button -->
+        <form action="/reports/<%= el.id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete Trip Report">
+        </form>
+
+        <% } %> 
+
     </li>
 </ul>
 <% }) %> 
 
 <% if (!user) { %>
     <h3>Must be <a href="/users/login">signed in</a> to write a trip report. Create a new account <a href="/users/new">here</a></h3>
-    <% } %>
+<% } %> 
     
 <% if (user) { %>
     <!-- CREATE -->
@@ -34,10 +47,10 @@
         <input type="submit" class="btn btn-primary">       
     
     </form>
- 
-<% } %>
+    
+    <% } %>
 
-
-<!--UPDATE -->
-
-<!--DELETE -->
+    <!-- UPDATE - PUT -->
+    
+    <!--DELETE -->
+    
