@@ -6,8 +6,14 @@ Trip Reports:
     <ul>    
         <li>
             Location: <%=element.area.name %> <br>
-            Report: <%= element.report %>
             <!-- Add date here -->
+            Report: <%= element.report %>
+            <!-- Edit TR -->
+            <a href="/reports/edit/<%= element.id%>" > Edit </a>
+            <!-- DELETE TR -->
+            <form action="/reports/<%= element.id %>?_method=DELETE" method="POST">
+                <input type="submit" value="Delete Trip Report">
+            </form>
         </li>
     </ul>
 <% }) %>

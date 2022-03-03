@@ -1,8 +1,6 @@
 
 <% foundReports.forEach(report=> { %>
-    
     <form action="/reports/<%= report.id %>/?_method=PUT" method="POST">
-        
         <label for="report">Trip Report: </label>
         
         <input
