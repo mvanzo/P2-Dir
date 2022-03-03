@@ -6,8 +6,33 @@ const cryptojs = require('crypto-js')       // require crypto-js for cookie encr
 require('dotenv').config()
 
 // READ profile page
-router.get('/profile', (req, res)=>{
-    res.render('users/profile.ejs')
+router.get('/profile/:id', async (req, res)=>{
+    try {
+        const foundUser = await db.user.findOne({
+            where: {id: req.params.id},
+            include: {
+                model: db.report,
+                include: {
+                    model: db.area
+                }
+            }
+        })
+        console.log('HERE TISSSSSS', foundUser)
+
+        // res.send('this is the profile page')
+
+        res.render('users/profile.ejs', {
+            reports: foundUser.reports
+        })
+
+        // const foundReport = await db.report.findOne({
+        //     where: {userId: req.params.id},
+        // })
+
+    } catch (err) {
+        console.log('error loading profile page', err)
+    }
+
 })
 
 // READ new user page
