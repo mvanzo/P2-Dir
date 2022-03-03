@@ -6,7 +6,7 @@
 <% allAreas.forEach(area => { %>
     <li>
         <%= area.name %> <br>
-        <a href="/areas/<%= area.id %>">Trip Reports</a> <br>
+        <a href="/reports/<%= area.id %>">Trip Reports</a> <br>
         <a href="/areas/<%= area.id %>/weather">Weather</a>
     </li>
 <% }) %>
