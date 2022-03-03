@@ -46,12 +46,13 @@ router.put('/:id', async (req, res)=> {
         const foundReport = await db.report.findOne({
             where: {id: req.params.id}
         })
-        // console.log('THIS IS THE REPORT THAT WAS PRODUCED', foundReport.report)
         foundReport.update({
-            report: req.body.report
+            report: req.body.report,
+            areaId: req.body.report.areaId
         })
         await foundReport.save();
-        res.redirect(`/areas/${req.params.id}`);
+        // console.log('checking TO FIND IF THIS IS WORKING', foundReport.areaId)
+        res.redirect(`/areas/${foundReport.areaId}`);
     }
     catch (err) {
         console.log('error editing the trip report', err);

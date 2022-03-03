@@ -17,22 +17,12 @@ router.get('/profile/:id', async (req, res)=>{
                 }
             }
         })
-        console.log('HERE TISSSSSS', foundUser)
-
-        // res.send('this is the profile page')
-
         res.render('users/profile.ejs', {
             reports: foundUser.reports
         })
-
-        // const foundReport = await db.report.findOne({
-        //     where: {userId: req.params.id},
-        // })
-
     } catch (err) {
         console.log('error loading profile page', err)
     }
-
 })
 
 // READ new user page
