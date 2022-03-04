@@ -1,60 +1,27 @@
 <h1>Weather Forecast of <%= location %> </h1>
 
-<% forecastDays.forEach(day => { %>
-<ul>
-    Date: <%= day.datetime %> <br>
-    Description: <%= day.description %>
-
-    <li>
-        High: <%= day.tempmax %>° F
-    </li>
-    <li>
-        Low: <%= day.tempmin %>° F
-    </li>
-    <li>
-        Precip: <%= day.precip %>
-    </li>
-    <li>
-        Precipitation Potential: <%= day.precipprob %>%
-    </li>
-    <li>
-        Precip Type: <%= day.preciptype %>
-    </li>
-    <li>
-        Wind Speed: <%= day.windspeed %>
-    </li>
-    <li>
-        Wind Gust: <%= day.windgust %>
-    </li>
-    <li>
-        Wind Direction: <%= day.winddir %>
-    </li>
-    <li>
-        Cloud Cover: <%= day.cloudcover %>
-    </li>
-            
-</ul>
+<div class='charts-container'>
+    <div>
+        <canvas class="chart" id="firstChart"></canvas>
+    </div>
     
-<% }) %>
-
-<div>
-    <canvas id="firstChart"></canvas>
+    <div>
+        <canvas class="chart" id="secondChart"></canvas>
+    </div>
+    
+    <div>
+        <canvas class="chart" id="thirdChart"></canvas>
+    </div>
+    
+    <div>
+        <canvas class="chart" id="fourthChart"></canvas>
+    </div>
 </div>
 
-<div>
-    <canvas id="secondChart"></canvas>
-</div>
-
-<div>
-    <canvas id="thirdChart"></canvas>
-</div>
-
-<div>
-    <canvas id="fourthChart"></canvas>
-</div>
 
 <script>
-    
+
+// DATES ARRAY
 let datesArray = <%-JSON.stringify(dates)%>;
 // TEMP ARRAYS
 let highTempsArray = <%-JSON.stringify(highTemps)%>;
