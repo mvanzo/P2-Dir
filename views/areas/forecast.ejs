@@ -1,0 +1,93 @@
+<h1>Weather Forecast of <%= location %> </h1>
+
+<% forecastDays.forEach(day => { %>
+<ul>
+    Date: <%= day.datetime %> <br>
+    Description: <%= day.description %>
+
+    <li>
+        High: <%= day.tempmax %>° F
+    </li>
+    <li>
+        Low: <%= day.tempmin %>° F
+    </li>
+    <li>
+        Precip: <%= day.precip %>
+    </li>
+    <li>
+        Precipitation Potential: <%= day.precipprob %>%
+    </li>
+    <li>
+        Precip Type: <%= day.preciptype %>
+    </li>
+    <li>
+        Wind Speed: <%= day.windspeed %>
+    </li>
+    <li>
+        Wind Gust: <%= day.windgust %>
+    </li>
+    <li>
+        Wind Direction: <%= day.winddir %>
+    </li>
+    <li>
+        Cloud Cover: <%= day.cloudcover %>
+    </li>
+            
+</ul>
+    
+<% }) %>
+
+<canvas id="myChart"></canvas>
+
+<script>
+    let myChart = document.getElementById('myChart').getContext('2d')
+
+    let datesArray = <%-JSON.stringify(dates)%>      // work off of this
+    let highTempsArray = <%-JSON.stringify(highTemps)%>
+
+    // console.log(daysArray[0].datetime)
+
+    // let datesArray = daysArray.map(el=>{
+    //     return el.datetime
+    // })
+
+    // console.log(datesArray)
+
+    let weatherChart = new Chart(myChart, {
+    type:'bar',
+    data: {
+        labels: datesArray,
+        datasets: [{
+            label: 'Temperature',
+            data: highTempsArray
+        }]
+    },
+    options: {}
+    })
+</script>
+
+<!-- <script>
+    let myChart = document.getElementById('myChart').getContext('2d')
+
+    let weatherChart = new Chart(myChart, {
+    type:'bar',
+    data: {
+        labels:['Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        datasets: [{
+            label: 'Population',
+            data:[
+                643232,
+                554234,
+                511000,
+                499000,
+                450000,
+                412344
+            ]
+        }]
+    
+
+    
+    },
+    options: {}
+    })
+</script> -->

@@ -2,23 +2,22 @@ const express = require('express')
 const router = express.Router()
 const db = require('../models')     // link to database
 const axios = require('axios')
+const { append } = require('express/lib/response')
 require('dotenv').config()
 
 router.get('/', (req, res)=> {
     res.render('./areas/index.ejs')
 })
 
-router.get('/:id/weather', async (req, res)=>{
+// READ current weather
+router.get('/:id/current', async (req, res)=>{
     try {
         const backcountryLocation = await db.area.findOne({
             where: {id: req.params.id}
         })
-
-        let findWeather = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${backcountryLocation.latitude}%2C${backcountryLocation.longitude}?unitGroup=us&key=${process.env.WEATHER_API_KEY}&contentType=json`)
-                
-        // res.json(findWeather.data)
-    
-        res.render('./areas/weather.ejs', {
+        let findWeather = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${backcountryLocation.latitude}%2C${backcountryLocation.longitude}?unitGroup=us&key=${process.env.WEATHER_API_KEY}&contentType=json`)             
+        // res.json(findWeather.data.currentConditions)    
+        res.render('./areas/currentweather.ejs', {
             location: backcountryLocation.name,
 
             // CURRENT CONDITIONS
@@ -43,18 +42,40 @@ router.get('/:id/weather', async (req, res)=>{
             // SNOWPACK
             snowDepth: findWeather.data.days[0].snowdepth,
 
-            // FORECAST
-
-            // HISTORY
-
             // ALERTS
-
         })
 
     } catch (err) {
         console.log('error finding the weather', err)
     }
+})
 
+// READ forecast
+router.get('/:id/forecast', async (req, res)=> {
+    try {
+        const backcountryLocation = await db.area.findOne({
+            where: {id: req.params.id}
+        })
+        // ajax weather forecast
+        let forecastUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${backcountryLocation.latitude}%2C${backcountryLocation.longitude}/next7days?unitGroup=us&key=${process.env.WEATHER_API_KEY}&contentType=json`
+        let findWeather = await axios.get(forecastUrl)
+        
+        let dates = (findWeather.data.days).map(el=> {return el.datetime})
+        let highTemps = (findWeather.data.days).map(el=> {return el.tempmax}) 
+        // let lowTemps = (findWeather.data.days).map(el=> {return el.tempmin})
+
+        res.render('./areas/forecast.ejs', {
+            location: backcountryLocation.name,
+            forecastDescription: findWeather.data.description,
+            forecastDays: findWeather.data.days,
+            dates,
+            highTemps,
+            // lowTemps
+        })
+
+    } catch (err) {
+        console.log('there was an error finding the forecast', err)
+    }
 })
 
 

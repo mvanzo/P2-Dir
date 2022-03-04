@@ -8,6 +8,7 @@ router.get('/', (req, res)=> {
     res.send('testing reports controller')
 })
 
+// READ all trip reports
 router.get('/:id', async (req, res)=> {
     try {
         const backcountryLocation = await db.area.findOne({
@@ -25,7 +26,7 @@ router.get('/:id', async (req, res)=> {
             reports: backcountryLocation.reports
         })
     } catch (err) {
-        console.log('error finding the right ski area', err)
+        console.log('error loading all trip reports', err)
     }
 })
 
@@ -48,7 +49,7 @@ router.post('/', async (req, res)=> {
     }
 })
 
-// GET edit TR form
+// READ edit TR form
 router.get('/edit/:id', async (req, res)=> {
     const foundReports = await db.report.findAll({
         where: {id: req.params.id}
@@ -80,7 +81,7 @@ router.put('/:id', async (req, res)=> {
     }
 })
 
-// DELETE TR
+// DELETE trip report
 router.delete('/:id', async (req, res)=> {
     try {
         // console.log(`this is the id of the report ${req.params.id}`)

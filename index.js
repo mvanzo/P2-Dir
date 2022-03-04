@@ -15,7 +15,8 @@ app.set('view engine', 'ejs')                           // set the view engine t
 app.use(ejsLayouts)                                     // tells express we want to use layouts
 app.use(cookieParser())                                 // gives us access to req.cookies
 app.use(express.urlencoded({ extended: false }))        // body parser to make req.body work
-app.use(methodOverride("_method"))
+app.use(methodOverride("_method"))                      // allows put and delete methods
+app.use("/public", express.static("public"))            // connect to JS and CSS files
 
 // CUSTOM LOGIN MIDDLEWARE
 app.use(async (req, res, next)=>{
