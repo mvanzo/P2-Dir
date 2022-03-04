@@ -77,7 +77,7 @@ type:'bar',
 data: {
     labels: datesArray,
     datasets: [{
-        label: 'Temperature Range',
+        label: 'Temp Range (°F)',
         data: [
             [lowTempsArray[0], highTempsArray[0]],
             [lowTempsArray[1], highTempsArray[1]],
@@ -90,7 +90,18 @@ data: {
         backgroundColor: 'green',
     }]
 },
-options: {}
+// options: {}
+options: {
+    plugins: {
+        title: {
+            display: true,
+            text: 'test'
+        },
+        legend: {
+            // position: 'right'
+        },
+    }
+},
 })
 
 // Wind Chart
@@ -101,11 +112,11 @@ let windChart = new Chart(secondChart, {
     data: {
         labels: datesArray,
         datasets: [{
-            label: 'Avg Wind Speed',
+            label: 'Avg Wind Speed (mph)',
             data: windSpeedsArray,
             backgroundColor: 'hotpink'
         }, {
-            label: 'Wind Gusts',
+            label: 'Wind Gusts (mph)',
             data: windGustsArray,
             backgroundColor: 'chartreuse'
         }]
@@ -121,7 +132,7 @@ let precipChart = new Chart(thirdChart, {
     data: {
         labels: datesArray,
         datasets: [{
-            label: 'Precip Totals',
+            label: 'Precip Totals (Water Equivalent)',
             data: precipArray,
             backgroundColor: 'lightblue',
         }],
@@ -137,11 +148,11 @@ let probabilityChart = new Chart(fourthChart, {
     data: {
         labels: datesArray,
         datasets: [{
-            label: 'Precip Probability',
+            label: 'Precip Probability (%)',
             data: precipProbArray,
             backgroundColor: 'lightblue',
         }, {
-            label: 'Cloud Cover',
+            label: 'Cloud Cover (%)',
             data: cloudCoverArray,
             backgroundColor: 'red'
         }],
