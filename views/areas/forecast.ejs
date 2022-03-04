@@ -37,57 +37,116 @@
     
 <% }) %>
 
-<canvas id="myChart"></canvas>
+<div>
+    <canvas id="firstChart"></canvas>
+</div>
+
+<div>
+    <canvas id="secondChart"></canvas>
+</div>
+
+<div>
+    <canvas id="thirdChart"></canvas>
+</div>
+
+<div>
+    <canvas id="fourthChart"></canvas>
+</div>
 
 <script>
-    let myChart = document.getElementById('myChart').getContext('2d')
+    
+let datesArray = <%-JSON.stringify(dates)%>;
+// TEMP ARRAYS
+let highTempsArray = <%-JSON.stringify(highTemps)%>;
+let lowTempsArray = <%-JSON.stringify(lowTemps)%>;
+// WIND ARRAYS
+let windSpeedsArray = <%-JSON.stringify(windSpeeds)%>;
+let windGustsArray = <%-JSON.stringify(windGusts)%>;
+// PRECIP ARRAYS
+let precipArray = <%-JSON.stringify(precip)%>;
+// PROBABILITY ARRAYS
+let precipProbArray = <%-JSON.stringify(precipProb)%>;
+let cloudCoverArray = <%-JSON.stringify(cloudCover)%>;
 
-    let datesArray = <%-JSON.stringify(dates)%>      // work off of this
-    let highTempsArray = <%-JSON.stringify(highTemps)%>
 
-    // console.log(daysArray[0].datetime)
+// TEMP CHART
+let firstChart = document.getElementById('firstChart').getContext('2d')
 
-    // let datesArray = daysArray.map(el=>{
-    //     return el.datetime
-    // })
+let tempChart = new Chart(firstChart, {
+type:'bar',
+data: {
+    labels: datesArray,
+    datasets: [{
+        label: 'Temperature Range',
+        data: [
+            [lowTempsArray[0], highTempsArray[0]],
+            [lowTempsArray[1], highTempsArray[1]],
+            [lowTempsArray[2], highTempsArray[2]],
+            [lowTempsArray[3], highTempsArray[3]],
+            [lowTempsArray[4], highTempsArray[4]],
+            [lowTempsArray[5], highTempsArray[5]],
+            [lowTempsArray[6], highTempsArray[6]]
+        ],   
+        backgroundColor: 'green',
+    }]
+},
+options: {}
+})
 
-    // console.log(datesArray)
+// Wind Chart
+let secondChart = document.getElementById('secondChart').getContext('2d')
 
-    let weatherChart = new Chart(myChart, {
-    type:'bar',
+let windChart = new Chart(secondChart, {
+    type: 'line',
     data: {
         labels: datesArray,
         datasets: [{
-            label: 'Temperature',
-            data: highTempsArray
+            label: 'Avg Wind Speed',
+            data: windSpeedsArray,
+            backgroundColor: 'hotpink'
+        }, {
+            label: 'Wind Gusts',
+            data: windGustsArray,
+            backgroundColor: 'chartreuse'
         }]
     },
     options: {}
-    })
-</script>
+})
 
-<!-- <script>
-    let myChart = document.getElementById('myChart').getContext('2d')
+// PRECIP CHART
+let thirdChart = document.getElementById('thirdChart').getContext('2d')
 
-    let weatherChart = new Chart(myChart, {
-    type:'bar',
+let precipChart = new Chart(thirdChart, {
+    type: 'bar',
     data: {
-        labels:['Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+        labels: datesArray,
         datasets: [{
-            label: 'Population',
-            data:[
-                643232,
-                554234,
-                511000,
-                499000,
-                450000,
-                412344
-            ]
-        }]
-    
-
-    
+            label: 'Precip Totals',
+            data: precipArray,
+            backgroundColor: 'lightblue',
+        }],
     },
     options: {}
-    })
-</script> -->
+})
+
+// POTENTIALS CHART
+let fourthChart = document.getElementById('fourthChart').getContext('2d')
+
+let probabilityChart = new Chart(fourthChart, {
+    type: 'line',
+    data: {
+        labels: datesArray,
+        datasets: [{
+            label: 'Precip Probability',
+            data: precipProbArray,
+            backgroundColor: 'lightblue',
+        }, {
+            label: 'Cloud Cover',
+            data: cloudCoverArray,
+            backgroundColor: 'red'
+        }],
+    },
+    options: {}
+})
+
+</script>

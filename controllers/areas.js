@@ -61,8 +61,22 @@ router.get('/:id/forecast', async (req, res)=> {
         let findWeather = await axios.get(forecastUrl)
         
         let dates = (findWeather.data.days).map(el=> {return el.datetime})
+        
+        // temp chart
         let highTemps = (findWeather.data.days).map(el=> {return el.tempmax}) 
-        // let lowTemps = (findWeather.data.days).map(el=> {return el.tempmin})
+        let lowTemps = (findWeather.data.days).map(el=> {return el.tempmin})
+
+        // wind chart
+        let windSpeeds = (findWeather.data.days).map(el=> {return el.windspeed})
+        let windGusts = (findWeather.data.days).map(el=> {return el.windgust})
+        
+        // precip chart
+        let precip = (findWeather.data.days).map(el=> {return el.precip})
+
+        // percentages chart
+        let cloudCover = (findWeather.data.days).map(el=> {return el.cloudcover})
+        let precipProb = (findWeather.data.days).map(el=> {return el.precipprob})
+        
 
         res.render('./areas/forecast.ejs', {
             location: backcountryLocation.name,
@@ -70,7 +84,12 @@ router.get('/:id/forecast', async (req, res)=> {
             forecastDays: findWeather.data.days,
             dates,
             highTemps,
-            // lowTemps
+            lowTemps,
+            windSpeeds,
+            windGusts,
+            precip,
+            cloudCover,
+            precipProb
         })
 
     } catch (err) {
