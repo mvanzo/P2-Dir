@@ -1,3 +1,4 @@
+require('dotenv').config()                              // allows us to access .env variables
 const express = require('express')                      // import express
 const ejsLayouts = require('express-ejs-layouts')       // import ejs layouts
 const cookieParser = require('cookie-parser')
@@ -5,7 +6,6 @@ const cryptoJS = require('crypto-js')
 const db = require('./models/index.js')
 const methodOverride = require("method-override")       // allows for use of put and delete
 
-require('dotenv').config()                              // allows us to access .env variables
 
 const app = express()                                   // create an express instance
 const PORT = process.env.PORT || 8000                   // allows us to access a 
