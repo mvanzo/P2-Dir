@@ -24,7 +24,6 @@
                         <form action="/reports/<%= el.id %>?_method=DELETE" method="POST">
                             <input type="submit" value="Delete Trip Report">
                         </form>
-                
                         <% } %> 
                 </td>
             </tr>
@@ -43,12 +42,11 @@
     <!-- add label/input for date -->
     <div class="report-container mb-3 w-75">
         <label for="report" class="form-label">Write a trip report:</label>
-        <textarea type="text" name="report" id="report" class="form-control" rows="3" required></textarea>
+        <textarea type="text" name="report" id="report" class="form-control" rows="4" required></textarea>
         <input type="hidden" name="userId" value="<%= user.id %> ">
         <input type="hidden" name="areaId" value="<%= id %>">
         <input type="submit" class="btn btn-primary">        
     </div>
-    
 </form>
 
     

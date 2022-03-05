@@ -74,7 +74,7 @@ router.put('/:id', async (req, res)=> {
         })
         await foundReport.save();
         // console.log('checking TO FIND IF THIS IS WORKING', foundReport.areaId)
-        res.redirect(`/areas/${foundReport.areaId}`);
+        res.redirect(`/reports/${foundReport.areaId}`);
     }
     catch (err) {
         console.log('error editing the trip report', err);
@@ -89,7 +89,7 @@ router.delete('/:id', async (req, res)=> {
             where: {id: req.params.id}
         })
         await foundReport.destroy();
-        res.redirect(`/areas/${foundReport.areaId}`);
+        res.redirect(`/reports/${foundReport.areaId}`);
     } catch (err) {
         console.log('error deleting the TR', err);
     }
