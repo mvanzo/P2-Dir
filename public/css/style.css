@@ -12,3 +12,8 @@ height:400px;
 .home-container {
     text-align: center;
 }
+
+.text-area {
+    height: 300px;
+    width: 600px;
+}

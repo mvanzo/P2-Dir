@@ -36,7 +36,7 @@
 
     <form action="/reports" method="POST">
         <label for="report">Report:</label>
-        <input type="text" name="report" id="report" required>
+        <input class="text-area" type="text" name="report" id="report" required>
         
         <!-- add label/input for date -->
     
@@ -47,6 +47,11 @@
         <input type="submit" class="btn btn-primary">       
     
     </form>
+
+    <div class="form-outline w-50">
+        <textarea class="form-control" id="textAreaExample3" rows="2"></textarea>
+        <label class="form-label" for="textAreaExample3">Message</label>
+      </div>
     
     <% } %>
 
