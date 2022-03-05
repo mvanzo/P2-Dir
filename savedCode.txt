@@ -1,0 +1,11 @@
+<% allAreas.forEach(area => { %>
+    <li>
+        <%= area.name %> <br>
+        <a href="/reports/<%= area.id %>">Trip Reports</a> <br>
+        <a href="/areas/<%= area.id %>/current">Current Weather</a>
+        <!-- remove the forecast link before finished -->
+        <a href="/areas/<%= area.id %>/forecast">Forecast</a>
+    </li>
+<% }) %>
+
+-- above was from home page
