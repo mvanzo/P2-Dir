@@ -97,8 +97,4 @@ router.get('/:id/forecast', async (req, res)=> {
     }
 })
 
-
-
-
-
 module.exports = router

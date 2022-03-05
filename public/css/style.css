@@ -1,3 +1,7 @@
+body {
+    padding-bottom: 100px;
+}
+
 .carousel {
     margin: 0 auto;
     width:600px;
@@ -13,7 +17,14 @@ height:400px;
     text-align: center;
 }
 
-.text-area {
-    height: 300px;
-    width: 600px;
+.report-container {
+    margin: 10px 25px;
+}
+
+.form-control {
+    margin-bottom: 10px
+}
+
+.table-container {
+    margin: 10px 25px;
 }

@@ -40,7 +40,7 @@ router.post('/', async (req, res)=> {
                 userId: req.body.userId,
                 areaId: req.body.areaId
             })
-            res.redirect(`/areas/${req.body.areaId}`)
+            res.redirect(`/reports/${req.body.areaId}`)
         } catch (err) {
             console.log('there is an error with report creation', err)
         }

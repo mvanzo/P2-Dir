@@ -1,30 +1,37 @@
-<h1>The id of <%= location %> is <%= id %></h1>
-
-<!-- TRIP REPORTS -->
-
 <!-- READ -->
-<h3>Trip Reports:</h3>
 
-<% reports.forEach(el => { %>
-<ul>
-    <li>
-        <%= el.user.username %>: 
-        <%= el.report %>
+<div class="table-container">
+    <h2><%= location %> Trip Reports</h2>
 
-        <!-- edit TR link - user must be logged in and it must be their comment -->
-        <% if (user && user.id === el.user.id) { %>
-        <a href="/reports/edit/<%= el.id%>" > Edit </a>
-
-        <!-- DELETE TR button -->
-        <form action="/reports/<%= el.id %>?_method=DELETE" method="POST">
-            <input type="submit" value="Delete Trip Report">
-        </form>
-
-        <% } %> 
-
-    </li>
-</ul>
-<% }) %> 
+    <table class="table table-bordered w-75">
+        <thead>
+            <tr>
+                <th scope="col">User</th>
+                <th scope="col">Trip Report</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- displays most recent TRs first -->
+            <% reports.slice().reverse().forEach(el => { %>
+            <tr>
+                <td><%= el.user.username %>
+                    
+                </td>
+                <td><%= el.report %>
+                
+                    <% if (user && user.id === el.user.id) { %>
+                        <a href="/reports/edit/<%= el.id%>" > Edit </a>
+                        <form action="/reports/<%= el.id %>?_method=DELETE" method="POST">
+                            <input type="submit" value="Delete Trip Report">
+                        </form>
+                
+                        <% } %> 
+                </td>
+            </tr>
+            <% }) %> 
+        </tbody>
+    </table>
+</div>
 
 <% if (!user) { %>
     <h3>Must be <a href="/users/login">signed in</a> to write a trip report. Create a new account <a href="/users/new">here</a></h3>
@@ -32,26 +39,18 @@
     
 <% if (user) { %>
     <!-- CREATE -->
-    <h3>Write a trip report</h3>
-
-    <form action="/reports" method="POST">
-        <label for="report">Report:</label>
-        <input class="text-area" type="text" name="report" id="report" required>
-        
-        <!-- add label/input for date -->
-    
+<form action="/reports" method="POST">
+    <!-- add label/input for date -->
+    <div class="report-container mb-3 w-75">
+        <label for="report" class="form-label">Write a trip report:</label>
+        <textarea type="text" name="report" id="report" class="form-control" rows="3" required></textarea>
         <input type="hidden" name="userId" value="<%= user.id %> ">
-        <input type="hidden" name="areaId" value="<%= id %> ">
-        
-        <!-- copied button class from express-proj-organizer -->
-        <input type="submit" class="btn btn-primary">       
+        <input type="hidden" name="areaId" value="<%= id %>">
+        <input type="submit" class="btn btn-primary">        
+    </div>
     
-    </form>
+</form>
 
-    <div class="form-outline w-50">
-        <textarea class="form-control" id="textAreaExample3" rows="2"></textarea>
-        <label class="form-label" for="textAreaExample3">Message</label>
-      </div>
     
     <% } %>
 
