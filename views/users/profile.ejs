@@ -1,6 +1,8 @@
 <h2>This is the home page of user: <%= user.username %> </h2>
 
-Trip Reports:
+<a href="/favorites/new">Create a new location</a>
+
+<h3>Your Trip Reports</h3>
 
 <% reports.forEach(element => { %>
     <ul>    
@@ -17,3 +19,13 @@ Trip Reports:
         </li>
     </ul>
 <% }) %>
+
+<h3>Your favorites list</h3>
+
+<% faves.forEach(fave=> { %>
+    <ul>
+        <li>
+            Nickname: <%= fave.name %>
+        </li>
+    </ul>
+<% }) %> 

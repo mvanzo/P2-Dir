@@ -5,10 +5,11 @@ const bcrypt = require('bcrypt')        // need to require bcrypt in order to us
 const cryptojs = require('crypto-js')       // require crypto-js for cookie encrpytion?
 require('dotenv').config()
 
-// READ profile page
+// READ profile page with areas, reports, and favorites linked to user
 router.get('/profile/:id', async (req, res)=>{
     try {
-        const foundUser = await db.user.findOne({
+        // link to reports and area from user
+        const foundUserReports = await db.user.findOne({
             where: {id: req.params.id},
             include: {
                 model: db.report,
@@ -17,8 +18,18 @@ router.get('/profile/:id', async (req, res)=>{
                 }
             }
         })
+
+        // link to favorites list from user
+        const foundUserFaves = await db.user.findOne({
+            where: {id: req.params.id},
+            include: {
+                model: db.favorite
+            }
+        })
+
         res.render('users/profile.ejs', {
-            reports: foundUser.reports
+            reports: foundUserReports.reports,
+            // faves: foundUserFaves.favorites
         })
     } catch (err) {
         console.log('error loading profile page', err)

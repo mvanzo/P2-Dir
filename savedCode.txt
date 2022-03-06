@@ -50,3 +50,12 @@
 </ul>
 
 -- taken from currentweather.ejs
+
+<!-- <% faves.forEach(fave=> { %>
+    <ul>
+        <li>
+            Nickname: <%= fave.name %>
+        </li>
+    </ul>
+<% }) %>  -->
+- taken from profile page

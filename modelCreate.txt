@@ -4,3 +4,6 @@ generate seed file:
 sequelize seed:generate --name seed-area
 
 sequelize model:create --name report --attributes report:text,userId:integer,areaId:integer
+
+
+sequelize model:create --name favorite --attributes name:string,latitude:float,longitude:float,userId:integer

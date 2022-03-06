@@ -32,3 +32,10 @@ height:400px;
 .table-container {
     margin: 10px 25px;
 }
+
+/* remove up/down arrows from number inputs */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

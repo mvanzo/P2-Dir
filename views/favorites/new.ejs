@@ -1,0 +1,25 @@
+<h1>Create a new location to add to your list of stored locations for weather forecasting</h1>
+
+<form class="row g-3" action="/favorites" method="POST">
+    <div class="row">
+        <div class="col-md-6">
+            <label for="nickname" class="form-label">Nickname</label>
+            <input type="text" class="form-control" name="nickname" id="nickname" placeholder="Example: Crown Point" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label for="latitude" class="form-label">Latitude</label>
+            <input type="number" step="any" class="form-control" name="latitude" id="latitude" placeholder="Example: 46.92399" required>
+        </div>
+        <div class="col-md-3">
+            <label for="longitude" class="form-label">Longitude</label>
+            <input type="number" step="any" class="form-control" name="longitude" id="longitude" placeholder="Example: -121.45620" required>
+        </div>
+        <div class="col-12">
+            <input type="hidden" name="userId" value="<%= user.id %>">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </div>
+</form>
