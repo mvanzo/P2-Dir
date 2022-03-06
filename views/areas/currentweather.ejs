@@ -1,54 +1,139 @@
-<h1>Current Weather at <%= location %> </h1>
+<h1 class="text-center"><%= location %> </h1>
 
-<!-- insert a table with weather data -->
+<!-- Current Conditions Table -->
+<div class="table-container">
+    <h2 class="text-center">Current Conditions</h2>
 
-<h1>Current</h1>
-<ul>
-    <li>
-        Conditions: <%= currentConditions %> 
-    </li>
-    <li>
-        Temp: <%= currentTemp %>° F
-    </li>
-    <li>
-        Feels Like: <%= currentFeelsLike %>° F
-    </li>
-    <li>
-        Wind Speed: <%= currentWindSpeed %> mph
-    </li>
-    <li>
-        Wind Direction: <%= currentWindDir %> 
-    </li>
-    <li>  
-        Visibility: <%= currentVisibility %> 
-    </li>
-    <li>  
-        Cloud Cover: <%= currentCloudCover %>%
-    </li>
-</ul>
+    <table class="table table-bordered w-75 text-center conditions-table">
+        <thead>
+            <tr>
+                <th scope="col">Conditions</th>
+                <th scope="col">Temp</th>
+                <th scope="col">Feels Like</th>
+                <th scope="col">Wind Speed</th>
+                <th scope="col">Wind Direction</th>
+                <th scope="col">Cloud Cover</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> <%= currentConditions %> </td>
+                <td> <%= currentTemp %>° F  </td>
+                <td> <%= currentFeelsLike %>° F </td>
+                <td> <%= currentWindSpeed %> mph  </td>
+                <td> <%= currentWindDir %>  </td>
+                <td> <%= currentCloudCover %>% </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-<h1>Today's Forecast</h1>
-<ul>
-    <li>
-        Description: <%= todayDescription %> 
-    </li>
-    <li>
-        Precipitation Potential: <%= todayPrecipProb %>%
-    </li>
-    <li>
-        Precip Type: <%= currentPrecipType %> 
-    </li>
-    <li>
-        High: <%= todayTempMax %>° F
-    </li>
-    <li>
-        Low: <%= todayTempMin %>° F
-    </li>
-</ul>
 
-<h1>Snowpack</h1>
-<ul>
-    <li>
-        Snow Depth: <%= snowDepth %> inches???
-    </li>
-</ul>
+<!-- hourly weather charts -->
+<section class="p-5">
+    <h2 class="text-center">Hourly Weather Forecast</h2>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-12 col-lg-6 p-3"><canvas class="chart" id="firstChart"></canvas></div>
+            <div class="col-12 col-lg-6 p-3"><canvas class="chart" id="secondChart"></canvas></div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-6 p-3"><canvas class="chart" id="thirdChart"></canvas></div>   
+            <div class="col-12 col-lg-6 p-3"><canvas class="chart" id="fourthChart"></canvas></div>
+        </div>
+        
+    </div>
+</section>
+
+<script>
+
+// hours array
+let hoursArray = <%-JSON.stringify(hours)%>;
+// TEMP ARRAYS
+let tempsArray = <%-JSON.stringify(temps)%>;
+
+// WIND ARRAYS
+let windSpeedsArray = <%-JSON.stringify(windSpeed)%>;
+let windGustsArray = <%-JSON.stringify(windGusts)%>;
+
+// PRECIP ARRAYS
+let precipArray = <%-JSON.stringify(precip)%>;
+
+// PROBABILITY ARRAYS
+let cloudCoverArray = <%-JSON.stringify(cloudCover)%>;
+let precipProbArray = <%-JSON.stringify(precipProb)%>;
+
+// TEMP CHART
+let firstChart = document.getElementById('firstChart').getContext('2d')
+
+let tempChart = new Chart(firstChart, {
+    type: 'line',
+    data: {
+        labels: hoursArray,
+        datasets: [{
+            label: "Temp (° F)",
+            data: tempsArray,
+            backgroundColor: 'blue'
+        }]
+    },
+    options: {}
+})
+
+// WIND CHART
+let secondChart = document.getElementById('secondChart').getContext('2d')
+
+let windChart = new Chart(secondChart, {
+    type: 'line',
+    data: {
+        labels: hoursArray,
+        datasets: [{
+            label: 'Wind Speed (mph)',
+            data: windSpeedsArray,
+            backgroundColor: 'hotpink'
+        }, {
+            label: 'Wind Gusts (mph)',
+            data: windGustsArray,
+            backgroundColor: 'chartreuse'
+        }]
+    },
+    options: {}
+})
+
+// PRECIP CHART
+let thirdChart = document.getElementById('thirdChart').getContext('2d')
+
+let precipChart = new Chart(thirdChart, {
+    type: 'bar',
+    data: {
+        labels: hoursArray,
+        datasets: [{
+            label: 'Hourly Precip (Water Equivalent)',
+            data: precipArray,
+            backgroundColor: 'red'
+        }]
+    },
+    options: {}
+})
+
+// PROBABILITIES CHART
+let fourthChart = document.getElementById('fourthChart').getContext('2d')
+
+probabilitiesChart = new Chart(fourthChart, {
+    type: 'line',
+    data: {
+        labels: hoursArray,
+        datasets: [{
+            label: 'Precip Probability (%)',
+            data: precipProbArray,
+            backgroundColor: 'orange'
+        }, {
+            label: 'Cloud Cover (%)',
+            data: cloudCoverArray,
+            backgroundColor: 'yellow'
+        }]
+    }
+})
+
+</script>

@@ -16,9 +16,35 @@ router.get('/:id/current', async (req, res)=>{
             where: {id: req.params.id}
         })
         let findWeather = await axios.get(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${backcountryLocation.latitude}%2C${backcountryLocation.longitude}?unitGroup=us&key=${process.env.WEATHER_API_KEY}&contentType=json`)             
-        // res.json(findWeather.data.currentConditions)    
+                
+        // description
+        let dayDescription = await (findWeather.data.description)
+
+        // OBJECT TO PULL DATA FROM
+        let hourlyWeather = await findWeather.data.days[0].hours
+        
+        // hours array for x-axis of all charts
+        let hours = await (hourlyWeather).map(el=> {return el.datetime})
+        
+        //temp chart
+        let temps = await (hourlyWeather).map(el=> {return el.temp})
+        
+        // wind chart
+        let windSpeed = await (hourlyWeather).map(el=> {return el.windspeed})
+        let windGusts = await (hourlyWeather).map(el=> {return el.windgust})
+        
+        // precip chart
+        let precip = await (hourlyWeather).map(el=> {return el.precip})
+
+        // percentages chart
+        let cloudCover = await (hourlyWeather).map(el=> {return el.cloudcover})
+        let precipProb = await (hourlyWeather).map(el=> {return el.precipprob})
+
         res.render('./areas/currentweather.ejs', {
             location: backcountryLocation.name,
+
+            // DESCRIPTION
+            dayDescription,
 
             // CURRENT CONDITIONS
             currentConditions: findWeather.data.currentConditions.conditions,
@@ -26,23 +52,20 @@ router.get('/:id/current', async (req, res)=>{
             currentFeelsLike: findWeather.data.currentConditions.feelslike,
             currentWindSpeed: findWeather.data.currentConditions.windspeed,
             currentWindDir: findWeather.data.currentConditions.winddir,
-            currentVisibility: findWeather.data.currentConditions.visbility,
             currentCloudCover: findWeather.data.currentConditions.cloudcover,
-            currentSolarRadiation: findWeather.data.currentConditions.solarradiation,
-            currentSolarEnergy: findWeather.data.currentConditions.solarenergy,
-            currentUvIndex: findWeather.data.currentConditions.uvindex,
 
-            // TODAY
-            todayDescription: findWeather.data.days[0].description,
-            todayPrecipProb: findWeather.data.days[0].precipprob,
-            todayTempMax: findWeather.data.days[0].tempmax,
-            todayTempMin: findWeather.data.days[0].tempmin,
-            currentPrecipType: findWeather.data.days[0].preciptype,   // this is an array
+            // HOURLY
+            hours,
+            temps,
+            windSpeed,
+            windGusts,
+            precip,
+            cloudCover,
+            precipProb,
             
             // SNOWPACK
             snowDepth: findWeather.data.days[0].snowdepth,
 
-            // ALERTS
         })
 
     } catch (err) {
@@ -60,22 +83,23 @@ router.get('/:id/forecast', async (req, res)=> {
         let forecastUrl = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${backcountryLocation.latitude}%2C${backcountryLocation.longitude}/next7days?unitGroup=us&key=${process.env.WEATHER_API_KEY}&contentType=json`
         let findWeather = await axios.get(forecastUrl)
         
-        let dates = (findWeather.data.days).map(el=> {return el.datetime})
+        // dates array for x-axis of all charts
+        let dates = await (findWeather.data.days).map(el=> {return el.datetime})
         
         // temp chart
-        let highTemps = (findWeather.data.days).map(el=> {return el.tempmax}) 
-        let lowTemps = (findWeather.data.days).map(el=> {return el.tempmin})
+        let highTemps = await (findWeather.data.days).map(el=> {return el.tempmax}) 
+        let lowTemps = await (findWeather.data.days).map(el=> {return el.tempmin})
 
         // wind chart
-        let windSpeeds = (findWeather.data.days).map(el=> {return el.windspeed})
-        let windGusts = (findWeather.data.days).map(el=> {return el.windgust})
+        let windSpeeds = await (findWeather.data.days).map(el=> {return el.windspeed})
+        let windGusts = await (findWeather.data.days).map(el=> {return el.windgust})
         
         // precip chart
-        let precip = (findWeather.data.days).map(el=> {return el.precip})
+        let precip = await (findWeather.data.days).map(el=> {return el.precip})
 
         // percentages chart
-        let cloudCover = (findWeather.data.days).map(el=> {return el.cloudcover})
-        let precipProb = (findWeather.data.days).map(el=> {return el.precipprob})
+        let cloudCover = await (findWeather.data.days).map(el=> {return el.cloudcover})
+        let precipProb = await (findWeather.data.days).map(el=> {return el.precipprob})
         
 
         res.render('./areas/forecast.ejs', {

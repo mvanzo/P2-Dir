@@ -1,38 +1,52 @@
-<% allAreas.forEach(area => { %>
+<h1>Current</h1>
+<ul>
     <li>
-        <%= area.name %> <br>
-        <a href="/reports/<%= area.id %>">Trip Reports</a> <br>
-        <a href="/areas/<%= area.id %>/current">Current Weather</a>
-        <!-- remove the forecast link before finished -->
-        <a href="/areas/<%= area.id %>/forecast">Forecast</a>
+        Conditions: <%= currentConditions %> 
     </li>
-<% }) %>
+    <li>
+        Temp: <%= currentTemp %>° F
+    </li>
+    <li>
+        Feels Like: <%= currentFeelsLike %>° F
+    </li>
+    <li>
+        Wind Speed: <%= currentWindSpeed %> mph
+    </li>
+    <li>
+        Wind Direction: <%= currentWindDir %> 
+    </li>
+    <li>  
+        Visibility: <%= currentVisibility %> 
+    </li>
+    <li>  
+        Cloud Cover: <%= currentCloudCover %>%
+    </li>
+</ul>
 
--- above was from home page
+<h1>Today's Forecast</h1>
+<ul>
+    <li>
+        Description: <%= todayDescription %> 
+    </li>
+    <li>
+        Precipitation Potential: <%= todayPrecipProb %>%
+    </li>
+    <li>
+        Precip Type: <%= currentPrecipType %> 
+    </li>
+    <li>
+        High: <%= todayTempMax %>° F
+    </li>
+    <li>
+        Low: <%= todayTempMin %>° F
+    </li>
+</ul>
 
+<h1>Snowpack</h1>
+<ul>
+    <li>
+        Snow Depth: <%= snowDepth %> inches???
+    </li>
+</ul>
 
-<label for="report">Trip Report: </label>
-        
-        <input
-            type="text"
-            class="report-box" 
-            id="report"
-            name="report"
-            value="<%= report.report %>"
-            required
-        />
-
-        <input type="submit" value="Submit Changes">
-
--- from edit page
-
-
-<form action="/reports/<%= report.id %>/?_method=PUT" method="POST">
-        
-    <div class="report-container mb-3 w-75">
-        <label for="report" class="form-label">Trip Report:</label>
-        <textarea type="text" name="report" id="report" class="form-control" rows="3" value="<%= report.report %>" ></textarea>
-        <input type="submit" class="btn btn-primary">        
-    </div>
-
-</form>
+-- taken from currentweather.ejs
