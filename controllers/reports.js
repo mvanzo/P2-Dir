@@ -51,10 +51,10 @@ router.post('/', async (req, res)=> {
 
 // READ edit TR form
 router.get('/edit/:id', async (req, res)=> {
-    const foundReports = await db.report.findAll({
-        where: {id: req.params.id}
-    })
     try {
+        const foundReports = await db.report.findAll({
+            where: {id: req.params.id}
+        })
         res.render('./reports/edit.ejs', {foundReports})
     }
     catch (err) {
@@ -68,7 +68,7 @@ router.put('/:id', async (req, res)=> {
         const foundReport = await db.report.findOne({
             where: {id: req.params.id}
         })
-        foundReport.update({
+        await foundReport.update({
             report: req.body.report,
             areaId: req.body.report.areaId
         })

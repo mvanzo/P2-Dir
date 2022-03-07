@@ -12,6 +12,7 @@ router.get('/', async (req, res)=> {
     }
 })
 
+// READ new favorite form
 router.get('/new', async (req, res)=> {
     try {
         res.render('favorites/new.ejs')
@@ -20,6 +21,7 @@ router.get('/new', async (req, res)=> {
     }
 })
 
+// CREATE new fave location
 router.post('/', async (req, res)=> {
     try {
         const newFavorite = await db.favorite.create({
@@ -31,6 +33,36 @@ router.post('/', async (req, res)=> {
         res.redirect(`/users/profile/${req.body.userId}`)
     } catch (err) {
         console.log('error adding to list of favorites ', err)
+    }
+})
+
+// READ edit page
+router.get('/edit/:id', async (req, res)=> {
+    try {
+        const foundFaves = await db.favorite.findAll({
+            where: {id: req.params.id}
+        })
+        res.render('favorites/edit.ejs', {foundFaves})
+    } catch (err) {
+        console.log('error loading edit favorites form')
+    }
+})
+
+// EDIT favorite
+router.put('/:id', async (req, res)=> {
+    try {
+        const foundFaveEdit = await db.favorite.findOne({
+            where: {id: req.params.id}
+        })
+        await foundFaveEdit.update({
+            name: req.body.nickname,
+            latitude: req.body.latitude,
+            longitude: req.body.longitude
+        })
+        await foundFaveEdit.save();
+        res.redirect(`/users/profile/${req.body.userId}`)
+    } catch (err) {
+        console.log('error editing the favorite', err)
     }
 })
 

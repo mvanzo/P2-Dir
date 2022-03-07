@@ -1,31 +1,64 @@
 <h2>This is the home page of user: <%= user.username %> </h2>
 
-<a href="/favorites/new">Create a new location</a>
+<h3 class="text-center">Trip Reports</h3>
 
-<h3>Your Trip Reports</h3>
+<table class="table table-bordered w-50 centered-table">
+    <thead>
+        <tr class="text-center">
+            <th scope="col">Location</th>
+            <th scope="col">Report</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% reports.forEach(element=> { %>
+        <tr>
+            <td class="text-center"> <%= element.area.name %> </td>
+            <td> <%= element.report %></td>
+            <td>
+                <a class="btn btn-primary" href="/reports/edit/<%= element.id%>" role="button">Edit</a>
+                <!-- DELETE TR -->
+                <br><br>
+                <form action="/reports/<%= element.id %>?_method=DELETE" method="POST">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+            </form></td>
+        </tr>
+    </tbody>
+    <% }) %>
+</table>
 
-<% reports.forEach(element => { %>
-    <ul>    
-        <li>
-            Location: <%=element.area.name %> <br>
-            <!-- Add date here -->
-            Report: <%= element.report %>
-            <!-- Edit TR -->
-            <a href="/reports/edit/<%= element.id%>" > Edit </a>
-            <!-- DELETE TR -->
-            <form action="/reports/<%= element.id %>?_method=DELETE" method="POST">
-                <input type="submit" value="Delete Trip Report">
-            </form>
-        </li>
-    </ul>
-<% }) %>
 
-<h3>Your favorites list</h3>
 
-<% faves.forEach(fave=> { %>
-    <ul>
-        <li>
-            Nickname: <%= fave.name %>
-        </li>
-    </ul>
-<% }) %> 
+<h3 class="text-center">Favorited Locations</h3>
+
+
+<table class="table table-bordered w-50 text-center centered-table">
+    <% faves.forEach(fave=> { %>
+    <thead>
+        <tr>
+            <th scope="col">Nickname</th>
+            <th scope="col">Weather Links</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td> <%= fave.name %> <br> (<%= fave.latitude %>, <%= fave.longitude %>)</td>
+            <td> <a href="#">Current</a> <br> <a href="#">7 Day Forecast</a></td>
+            
+            <td>
+                <a class="btn btn-primary" href="/favorites/edit/<%= fave.id%>" role="button">Edit</a>
+                <!-- DELETE TR -->
+                <br><br>
+                <form action="/favorites/<%= fave.id %>?_method=DELETE" method="POST">
+                    <input type="submit" class="btn btn-danger" value="Delete">
+            </form></td>
+
+        </tr>
+        <tr>
+            <td colspan="3"><a href="/favorites/new">Create</a> a new location to add to your favorites list</td>
+        </tr>
+    </tbody>
+    <% }) %>
+</table>
+

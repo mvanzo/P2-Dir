@@ -29,7 +29,7 @@ router.get('/profile/:id', async (req, res)=>{
 
         res.render('users/profile.ejs', {
             reports: foundUserReports.reports,
-            // faves: foundUserFaves.favorites
+            faves: foundUserFaves.favorites
         })
     } catch (err) {
         console.log('error loading profile page', err)
