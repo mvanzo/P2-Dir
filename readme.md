@@ -1,9 +1,13 @@
 # Touring Reports
-* Description: Social platform for backcountry skiing in popular locations in Washington state. Users can log in to read and create trip reports as well as check the weather for the area with specific data backcountry skiers can utilize.
+Social platform for backcountry skiing in popular locations in Washington state. Users can log in to read and create trip reports as well as check the weather for the area with specific data backcountry skiers can utilize. Users can create a list of their favorite backcountry zones with easy weather reports for current and 7 day forecasts.
 
-## API Proof of Concept
+[Link to deployed site](https://touring-reports.herokuapp.com/)
 
-![API proof of concept](./API-Proof-Concept.png)
+# Development Approach
+I decided to build my site around a great API for weather forecasting that I found from [Visual Crossing](https://visualcrossing.com/), which has great data and documentation for use. I wanted the user to be able to be able to read and log their own trip reports but more importantly, I wanted the user to be able to create a saved list of sites for backcountry weather forecasting. This is something that I have found to be a missing link in my own usage of weather forecasting sites that I often in use in preparation for skiing.
+
+# Technologies Used
+Express app with node.js as the back-end language, and javascript on the front-end. Postgres and sequelize for database management. Bootstrap and CSS for styling.
 
 ## ERD
 
@@ -16,27 +20,27 @@
 | /users/new     | GET       | New user form                                                                                          |
 | /users         | POST      | Create new user                                                                                        |
 | /users         | PUT       | Update user info                                                                                       |
-| /users/profile | GET       | User profile including list of trip reports                                                            |
+| /users/profile/:id | GET       | User profile including list of trip reports and favorite forecasting areas                                   |
 | /users/login   | POST      | Attempt user login                                                                                     |
 | /users/logout  | GET       | Log out, clear cookies, redirect to home page                                                          |
-| /areas         | GET       | List of popular backcountry ski areas with links to each area                                          |
-| /areas/:id     | GET       | Specific backcountry area with trip reports and weather data                                           |
-| /areas/:id     | POST      | Add a trip report                                                                                      |
-| /areas/:id     | PUT       | Edit a trip report                                                                                     |
-| /areas/:id     | DELETE    | Delete trip report                                                                                     |
+| /areas/:id/current     | GET       | Current weather for backcountry area                                          |
+| /areas/:id/forecast    | POST      | Seven day forecasting for backcountry area                                                              |
+| /reports/:id     | GET       | Read trip reports for specific area                                                                   |
+| /reports/:id     | POST       | Create trip report                                                                   |
+| /reports/:id     | PUT       | Edit a trip report                                                                                     |
+| /reports/:id     | DELETE    | Delete trip report                                                                                     |
+| /favorites/new     | GET    | Create new favorite forecasting site form                                                               |
+| /favorites/new     | POST    | Create new favorite forecasting site                                                                    |
+| /favorites/:id     | PUT    | Edit favorite site                                                                   |
+| /favorites/:id     | DELETE    | Delete favorite site                                                                   |
 
-# User Stories
-* As a user, I want to open to a page with a clear description of what the application does and be able to find weather and trip reports for specific areas without having to log in
-* As as a user, I want to be able to log in and log out and have it be clear if I am signed in
-* As a user, I want to be able to create, edit, and delete my own trip reports
-* As a user, I want to be able to list all of my trip reports and show the area each trip report was in
-* Stretch??? As a user I want to be able to find weather data for specific locations within a backcountry area. Example: In the Crystal backcountry, I want to be able to compare the weather in the parking lot to the summit of East Peak.
+# Post-Project Reflection
+* I am so glad that I chose to work on a project that I am excited about - this helped to keep me creative during the development process. I am also grateful that I found a detailed API with great documentation to help me shape my project.
 
-# MVP
-* Log in/out with clear visual in top navbar if logged in
-* List of backcountry areas with links to each of their individual pages, which contain trip reports and weather reports (from API)
-* Multiple locations with a backcountry area to find specific weather data
+* Unsolved Problems
+    * Add date to trip reports - this way a user could even link to the weather forecast for that specific day
+    * Add wind direction to wind graphs
 
-# Stetch Goals
-* User can add their own specific locations for weather tracking within an area
-* Trip reports linked to weather data from the day of their report
+# Sources
+* [API - Visual Crossing](https://visualcrossing.com/)
+* [Bootstrap](https://getbootstrap.com/)
