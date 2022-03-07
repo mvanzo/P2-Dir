@@ -71,16 +71,18 @@
                     <li><a class="dropdown-item" href="/areas/4/forecast">Mount Baker</a></li>
                 </ul>
             </li>
-            
+
             <% if (user) { %>
-                <li class="nav-item">
-                <a class="nav-link disabled">Logged in as: <%= user.username %></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/profile/<%= user.id %>">Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/users/logout">Log Out</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Logged in as: <%= user.username %>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/users/profile/<%= user.id %>">Profile</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="/users/logout">Log Out</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    </ul>
                 </li>
             <% } else {%>
                 <li class="nav-item">
@@ -94,21 +96,6 @@
         </div>
     </div>
 </nav>
-
-    <!-- <nav>
-        <ul>
-            <% if(user) { %>
-                <li>Logged in as: <%= user.username %> </li>
-                <li><a href="/">Home</a></li>
-                <li><a href="/users/profile/<%= user.id %>">Profile</a></li>
-                <li><a href="/users/logout">Log Out</a></li>
-            <% }  else {%>
-                <li><a href="/users/new">Create Account</a></li>
-                <li><a href="/users/login">Log In</a></li>
-                <li><a href="/">Home</a></li>
-            <% } %>
-        </ul>
-    </nav> -->
 
     <%- body %>
 
