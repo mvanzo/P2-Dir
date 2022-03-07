@@ -1,20 +1,11 @@
-<h1>Create a New Account</h1>
+<h1 class="text-center mt-4">Create a New Account</h1>
 
-<form action="/users" method="POST">
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email"/>
-
-    <label for="password">Password:</label>
-    <input type="password" name="password" id="password"/>
-
-    <label for="username">Username:</label>
-    <input type="username" name="username" id="username"/>
-
-    <button type="submit">Sign Up!</button>
-</form>
-
-<div class="d-flex justify-content-center mt-5">
-    <form action="/users/login" method="POST">
+<div class="d-flex justify-content-center mt-4">
+    <form action="/users" method="POST">
+        <div class="mb-3 row">
+          <label for="username" class="form-label">Username</label>
+          <input type="username" class="form-control" name="username" id="username">
+        </div>
         <div class="mb-3 row">
           <label for="email" class="form-label">Email address</label>
           <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
