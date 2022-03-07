@@ -62,9 +62,6 @@ router.get('/:id/current', async (req, res)=>{
             precip,
             cloudCover,
             precipProb,
-            
-            // SNOWPACK
-            snowDepth: findWeather.data.days[0].snowdepth,
 
         })
 
