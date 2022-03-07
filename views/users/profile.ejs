@@ -42,7 +42,7 @@
     <tbody>
         <tr>
             <td> <%= fave.name %> <br> (<%= fave.latitude %>, <%= fave.longitude %>)</td>
-            <td> <a href="#">Current</a> <br> <a href="#">7 Day Forecast</a></td>
+            <td> <a href="/favorites/<%= fave.name %>/current">Current</a> <br> <a href="/favorites/<%= fave.name %>/forecast">7 Day Forecast</a></td>
             
             <td>
                 <a class="btn btn-primary" href="/favorites/edit/<%= fave.id%>" role="button">Edit</a>
