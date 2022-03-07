@@ -53,21 +53,11 @@ data: {
             [lowTempsArray[5], highTempsArray[5]],
             [lowTempsArray[6], highTempsArray[6]]
         ],   
-        backgroundColor: 'green',
+        backgroundColor: 'salmon',
     }]
 },
 // options: {}
-options: {
-    plugins: {
-        title: {
-            display: true,
-            text: 'test'
-        },
-        legend: {
-            // position: 'right'
-        },
-    }
-},
+options: {},
 })
 
 // Wind Chart
@@ -116,11 +106,11 @@ let probabilityChart = new Chart(fourthChart, {
         datasets: [{
             label: 'Precip Probability (%)',
             data: precipProbArray,
-            backgroundColor: 'lightblue',
+            backgroundColor: 'orange',
         }, {
             label: 'Cloud Cover (%)',
             data: cloudCoverArray,
-            backgroundColor: 'red'
+            backgroundColor: 'violet'
         }],
     },
     options: {}
