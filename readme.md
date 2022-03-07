@@ -9,6 +9,12 @@ Social platform for backcountry skiing in popular locations in Washington state.
 * Create database locally: `createdb touring_reports`
 * `sequelize db:migrate` to migrate models to the database
 * `sequelize db:seed:all` to seed data to the areas table
+* Get API access key from [Visual Crossing](https://visualcrossing.com/)
+* `touch .env .gitignore`
+* in your .gitignore file `node modules` and `.env`
+* in your .env file:
+    * WEATHER_API_KEY="{your API key}"
+    * SECRET="{any random string you want to put in here}"
 
 # Development Approach
 I decided to build my site around a great API for weather forecasting that I found from [Visual Crossing](https://visualcrossing.com/), which has great data and documentation for use. I wanted the user to be able to be able to read and log their own trip reports but more importantly, I wanted the user to be able to create a saved list of sites for backcountry weather forecasting. This is something that I have found to be a missing link in my own usage of weather forecasting sites that I often in use in preparation for skiing.
