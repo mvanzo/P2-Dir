@@ -3,11 +3,18 @@ Social platform for backcountry skiing in popular locations in Washington state.
 
 [Link to deployed site](https://touring-reports.herokuapp.com/)
 
+# Installation Instructions
+* Fork and clone
+* `npm i` to install all dependencies
+* Create database locally named `touring_reports`
+* `sequelize db:migrate` to migrate models to the database
+* `sequelize db:seed:all` to seed data to the areas table
+
 # Development Approach
 I decided to build my site around a great API for weather forecasting that I found from [Visual Crossing](https://visualcrossing.com/), which has great data and documentation for use. I wanted the user to be able to be able to read and log their own trip reports but more importantly, I wanted the user to be able to create a saved list of sites for backcountry weather forecasting. This is something that I have found to be a missing link in my own usage of weather forecasting sites that I often in use in preparation for skiing.
 
 # Technologies Used
-Express app with node.js as the back-end language, and javascript on the front-end. Postgres and sequelize for database management. Bootstrap and CSS for styling.
+Express app with node.js as the back-end language, and javascript on the front-end. Postgres and sequelize for database management. Bootstrap and CSS for styling. Chart.js for graphs.
 
 ## ERD
 
@@ -41,6 +48,14 @@ Express app with node.js as the back-end language, and javascript on the front-e
     * Add date to trip reports - this way a user could even link to the weather forecast for that specific day
     * Add wind direction to wind graphs
 
+* Future growth of Touring Projects
+    * Mapbox
+        * Pick a location from the map to save to favorites forecasting list
+        * Upload .gpx file to map with trip report
+        * Able to see .gpx tracks for user's trip reports
+    * Scrape from NWAC for avalanche forecasting
+
 # Sources
 * [API - Visual Crossing](https://visualcrossing.com/)
 * [Bootstrap](https://getbootstrap.com/)
+* [Chart.js](https://www.chartjs.org/)
