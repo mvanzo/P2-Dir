@@ -1,6 +1,4 @@
-<h2>This is the home page of user: <%= user.username %> </h2>
-
-<h3 class="text-center">Trip Reports</h3>
+<h3 class="text-center m-3">Trip Reports</h3>
 
 <table class="table table-bordered w-50 centered-table">
     <thead>
@@ -29,11 +27,10 @@
 
 
 
-<h3 class="text-center">Favorited Locations</h3>
+<h3 class="text-center mt-5 m-3">Favorited Locations</h3>
 
 
 <table class="table table-bordered w-50 text-center centered-table">
-    <% faves.forEach(fave=> { %>
     <thead>
         <tr>
             <th scope="col">Nickname</th>
@@ -41,6 +38,7 @@
             <th scope="col">Actions</th>
         </tr>
     </thead>
+    <% faves.forEach(fave=> { %>
     <tbody>
         <tr>
             <td> <%= fave.name %> <br> (<%= fave.latitude %>, <%= fave.longitude %>)</td>
@@ -51,14 +49,15 @@
                 <!-- DELETE TR -->
                 <br><br>
                 <form action="/favorites/<%= fave.id %>?_method=DELETE" method="POST">
+                    <input type="hidden" name="userId" value="<%= user.id %>">
                     <input type="submit" class="btn btn-danger" value="Delete">
             </form></td>
+            <% }) %>
 
         </tr>
         <tr>
             <td colspan="3"><a href="/favorites/new">Create</a> a new location to add to your favorites list</td>
         </tr>
     </tbody>
-    <% }) %>
 </table>
 

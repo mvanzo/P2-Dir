@@ -66,4 +66,16 @@ router.put('/:id', async (req, res)=> {
     }
 })
 
+router.delete('/:id', async (req, res)=> {
+    try {
+        const foundFaveDelete = await db.favorite.findOne({
+            where: {id: req.params.id}
+        })
+        await foundFaveDelete.destroy();
+        res.redirect(`/users/profile/${req.body.userId}`)
+    } catch (err) {
+        console.log('error deleting from favorites list', err)
+    }
+})
+
 module.exports = router
