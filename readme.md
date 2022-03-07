@@ -6,7 +6,7 @@ Social platform for backcountry skiing in popular locations in Washington state.
 # Installation Instructions
 * Fork and clone
 * `npm i` to install all dependencies
-* Create database locally named `touring_reports`
+* Create database locally: `createdb touring_reports`
 * `sequelize db:migrate` to migrate models to the database
 * `sequelize db:seed:all` to seed data to the areas table
 
