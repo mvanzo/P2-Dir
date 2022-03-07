@@ -24,7 +24,7 @@
             <td><%= el.user.username %> </td>
             <td><%= el.report %></td>
             <td class="text-center">
-                <% if (user.id === el.user.id) { %>
+                <% if (user && user.id === el.user.id) { %>
                 <!-- EDIT -->
                 <a class="btn btn-primary" href="/reports/edit/<%= el.id%>" role="button">Edit</a>
                 <br><br>
