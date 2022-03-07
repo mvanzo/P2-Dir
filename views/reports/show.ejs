@@ -1,7 +1,6 @@
 <!-- READ -->
 
 <% if (reports.length < 1) { %>
-    <% console.log(`ain't nothin here`) %>
     <h2 class="m-4">There are no trip reports for <%= location %> yet. Be the first to share! </h2>
 <% } else { %>
 
@@ -44,7 +43,7 @@
 <% }%> 
 
 <% if (!user) { %>
-    <h3>Must be <a href="/users/login">signed in</a> to write a trip report. Create a new account <a href="/users/new">here</a></h3>
+    <h3 class="m-4">Must be <a href="/users/login">signed in</a> to write a trip report. Create a new account <a href="/users/new">here</a></h3>
 <% } %> 
     
 <% if (user) { %>
