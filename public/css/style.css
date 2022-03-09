@@ -39,3 +39,8 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
   margin: 0; 
 }
+
+.img-fluid-custom {
+    max-width: 100%;
+    height: auto;
+}
