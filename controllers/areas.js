@@ -24,7 +24,7 @@ router.get('/:id/current', async (req, res)=>{
         let hourlyWeather = await findWeather.data.days[0].hours
         
         // hours array for x-axis of all charts
-        let hours = await (hourlyWeather).map(el=> {return el.datetime})
+        let hours = await (hourlyWeather).map(el=> {return el.datetime.substring(0,5)})
         
         //temp chart
         let temps = await (hourlyWeather).map(el=> {return el.temp})
