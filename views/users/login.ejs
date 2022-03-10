@@ -6,11 +6,11 @@
   <form action="/users/login" method="POST">
       <div class="mb-3 row">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp">
+        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
       </div>
       <div class="mb-3 row">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" name="password" id="password">
+        <input type="password" class="form-control" name="password" id="password" required>
       </div>
       <button type="submit" class="btn btn-primary">Log In</button>
   </form>
