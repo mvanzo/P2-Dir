@@ -44,3 +44,7 @@ input[type=number]::-webkit-outer-spin-button {
     max-width: 100%;
     height: auto;
 }
+
+.text-responsive {
+    font-size: calc(5% + 1vw + 1vh);
+  }

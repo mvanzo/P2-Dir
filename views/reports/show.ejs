@@ -12,28 +12,26 @@
         <tr class="text-center">
             <th scope="col">User</th>
             <th scope="col">Trip Report</th>
-            <% if (user) { %>
-            <th scope="col">Actions</th>
-            <% } %> 
         </tr>
     </thead>
     <tbody>
         <% reports.slice().reverse().forEach(el => { %>
         <tr>
             <td><%= el.user.username %> </td>
-            <td><%= el.report %></td>
-            <td class="text-center">
+            <td>
+                <%= el.report %>
+                <br>
                 <% if (user && user.id === el.user.id) { %>
-                <!-- EDIT -->
-                <a class="btn btn-primary" href="/reports/edit/<%= el.id%>" role="button">Edit</a>
-                <br><br>
-                <!-- DELETE -->
-                <form action="/reports/<%= el.id %>?_method=DELETE" method="POST">
-                    <input type="submit" class="btn btn-danger" value="Delete">
-                </form>
-            <% } else { %>
-            N/A</td>
-            <% } %> 
+                    <!-- EDIT -->
+                    <div class="btn-group">
+                        <a class="btn btn-primary d-inline mx-1 rounded" href="/reports/edit/<%= el.id%>" role="button">Edit</a>
+                        <!-- DELETE -->
+                        <form class="d-inline mx-1" action="/reports/<%= el.id %>?_method=DELETE" method="POST">
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                        </form>
+                    </div>
+                <% } %> 
+            </td>
         </tr>
          
     </tbody>
