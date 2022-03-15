@@ -10,11 +10,12 @@ Social platform for backcountry skiing in popular locations in Washington state.
 * `sequelize db:migrate` to migrate models to the database
 * `sequelize db:seed:all` to seed data to the areas table
 * Get API access key from [Visual Crossing](https://visualcrossing.com/)
-* `touch .env .gitignore`
-* in your .gitignore file `node modules` and `.env`
-* in your .env file:
-    * WEATHER_API_KEY="{your API key}"
-    * SECRET="{any random string you want to put in here}"
+    * Create an account to get personal API key
+* `touch .env .gitignore` in the CLI
+* In `.env` file
+    * `SECRET='<any random string you want to put in here>'`
+    * `WEATHER_API_KEY='<YOUR API KEY>'`
+* In your .gitignore file `node modules` and `.env`
 
 # Development Approach
 I decided to build my site around a great API for weather forecasting that I found from [Visual Crossing](https://visualcrossing.com/), which has great data and documentation for use. I wanted the user to be able to be able to read and log their own trip reports but more importantly, I wanted the user to be able to create a saved list of sites for backcountry weather forecasting. This is something that I have found to be a missing link in my own usage of weather forecasting sites that I often in use in preparation for skiing.
@@ -23,7 +24,6 @@ I decided to build my site around a great API for weather forecasting that I fou
 Express app with node.js as the back-end language, and javascript on the front-end. Postgres and sequelize for database management. Bootstrap and CSS for styling. Chart.js for graphs.
 
 ## ERD
-
 ![an ERD of my project](./ERD.drawio.png)
 
 ## RESTful Routing
