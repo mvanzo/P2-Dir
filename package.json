@@ -1,18 +1,10 @@
 {
   "name": "p2-dir",
   "version": "1.0.0",
-  "engines": {
-    "node": "12.11.1"
-  },
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -29,7 +21,6 @@
     "method-override": "^3.0.0",
     "pg": "^8.7.3",
     "sequelize": "^6.17.0",
-    "sequelize-cli": "^6.4.1",
-    "serve": "^14.2.0"
+    "sequelize-cli": "^6.4.1"
   }
 }
