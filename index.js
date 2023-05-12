@@ -8,7 +8,9 @@ const methodOverride = require("method-override")       // allows for use of put
 // const bootstrap = require('bootstrap')
 
 const app = express()                                   // create an express instance
-const PORT = process.env.PORT || 8000                   // allows us to access a 
+const PORT = process.env.PORT || 8000                   // allows us to access a
+
+// placeholder comment added to re-deploy from heroku
 
 // MIDDLEWARE
 app.set('view engine', 'ejs')                           // set the view engine to ejs
@@ -58,4 +60,4 @@ app.get("*", (req, res) => {
 
 app.listen(PORT, () => {
     console.log('...listening on', PORT );
-  });
+});
